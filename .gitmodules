@@ -1,3 +1,6 @@
 [submodule "code/lib/MatlabUtils"]
 	path = code/lib/MatlabUtils
 	url = https://github.com/yuichi-takeuchi/MatlabUtils.git
+[submodule "code/helper/circstat-matlab"]
+	path = code/helper/circstat-matlab
+	url = https://github.com/circstat/circstat-matlab.git
