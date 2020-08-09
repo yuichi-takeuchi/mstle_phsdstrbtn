@@ -6,6 +6,7 @@
 ### Prerequisites
 - [MATLAB](https://www.mathworks.com/products/matlab.html)
 - [MatlabUtils](https://github.com/yuichi-takeuchi/MatlabUtils)
+- [circstat-matlab](https://github.com/mrkrause/circstat-matlab)
 
 The codes have been tested with MATLAB ver 9.5 (R2018b) with the following toolboxes:
 - Curve Fitting Toolbox
@@ -19,6 +20,7 @@ The codes have been tested with MATLAB ver 9.5 (R2018b) with the following toolb
 ### Installing
 1. Install MATLAB
 2. Clone MatlabUtils in the \code\lib folder as a submodule.
+3. Clone circstat-matlab in the \code\helper folder as a submodule.
 
 ### How to use
 1. dat file should be located in the \data folder
@@ -40,4 +42,5 @@ This project is licensed under the MIT License.
 - [Berényi lab](http://www.berenyilab.com/)
 
 ## References
-- none
+- P. Berens, CircStat: A Matlab Toolbox for Circular Statistics, Journal of Statistical Software, Volume 31, Issue 10, 2009  
+  http://www.jstatsoft.org/v31/i10
