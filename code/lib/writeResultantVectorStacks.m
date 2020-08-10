@@ -39,7 +39,7 @@ for stm_delay = delayVector
 end
 
 % csv. file output
-writetable(Tb, ['../results' ID '_closed_resultantVec.csv'])
+writetable(Tb, ['../results/' ID '_closed_resultantVec.csv'])
 
 % comppass figure output
 if compassFigure
