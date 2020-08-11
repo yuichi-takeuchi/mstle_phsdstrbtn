@@ -1,4 +1,4 @@
-function [record] = resultantVectorRecord(fldrInfolfp, fldrInfoadc, trialNo, channelNo, RecInfo, ratNo, closed, period, stm_delay, jitter, polarhist)
+function [record, InstantaneousPhase] = resultantVectorRecord(fldrInfolfp, fldrInfoadc, trialNo, channelNo, RecInfo, ratNo, closed, period, stm_delay, jitter)
 % record is an one row table
 % Copyright (c) 2020 Yuichi Takeuchi
 
@@ -14,7 +14,7 @@ dtctlogical = dataadc > threshold;
 dtctn = uint64(tempR)';
 
 if jitter
-    tsp = uint64(floor(double(dtctn) + sr*(stm_delay/1000) + rand(size(dtctn,1), size(dtctn,2))));
+    tsp = uint64(floor(double(dtctn) + sr*(stm_delay/1000 + 0.1*rand(size(dtctn,1), size(dtctn,2)))));
 else
     tsp = uint64(dtctn + sr*(stm_delay/1000));
 end
@@ -38,10 +38,10 @@ edges = linspace(0, 2*pi, 360);
 N = [N 0];
 
 r = circ_r(edges, N); % r = circ_r(alpha, w, d, dim)
-fprintf('r = %d\n', r)
+% fprintf('r = %d\n', r)
 
 [mu, ~, ~] = circ_mean(edges, N); % [mu, ul, ll] = circ_mean(alpha, w, dim)
-fprintf('mu = %d\n', mu)
+% fprintf('mu = %d\n', mu)
 
 U = r*cos(mu);
 V = r*sin(mu);
@@ -50,38 +50,7 @@ V = r*sin(mu);
 [pval, z] = circ_rtest(edges, N); % [pval, z] = circ_rtest(alpha, w, d)
 
 % output table
-varNames = {'LTR'; 'date'; 'expNo'; 'sessionNo'; 'ratNo'; 'trialNo'; 'closed'; 'offset'; 'duration'; 'delay'; 'jitter'; 'U'; 'V'; 'pval'; 'z'};
-record = table(RecInfo.LTR(ratNo), RecInfo.date, RecInfo.expnum1, RecInfo.expnum2, ratNo, trialNo, closed, period(1), period(2), stm_delay, jitter, U, V, pval, z, 'VariableNames', varNames);
-
-if polarhist
-    hfig = figure(1);
-    hph = polarhistogram(InstantaneousPhase, 12);
-    hax = gca;
-    
-    hph.FaceColor = [0 0 0];
-    
-    % global arameters
-    fontname = 'Arial';
-    fontsize = 5;
-
-    % figure parameter settings
-    set(hfig,...
-        'PaperUnits', 'centimeters',...
-        'PaperPosition', [0.5 0.5 4 4],... % [h distance, v distance, width, height], origin: left lower corner
-        'PaperSize', [5 5]... % width, height
-        );
-
-    % axis parameter settings
-    set(hax,...
-        'FontName', fontname,...
-        'FontSize', fontsize...
-        );
-    
-    print(['../results/polarhist_' fldrInfolfp(trialNo).name '_rat' num2str(ratNo) 'trial_' num2str(trialNo) '.pdf'], '-dpdf')
-    print(['../results/polarhist_' fldrInfolfp(trialNo).name '_rat' num2str(ratNo) 'trial_' num2str(trialNo) '.png'], '-dpng')
-    
-    close all
-end
+varNames = {'LTR'; 'date'; 'expNo'; 'sessionNo'; 'ratNo'; 'trialNo'; 'closed'; 'offset'; 'duration'; 'delay'; 'jitter'; 'r'; 'theta'; 'X'; 'Y'; 'pval'; 'z'};
+record = table(RecInfo.LTR(ratNo), RecInfo.date, RecInfo.expnum1, RecInfo.expnum2, ratNo, trialNo, closed, period(1), period(2), stm_delay, jitter, r, mu, U, V, pval, z, 'VariableNames', varNames);
 
 end
-
