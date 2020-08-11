@@ -20,6 +20,10 @@ else
 end
 tsp(tsp > length(dataadc)) = []; % rejection of overrun
 
+if length(tsp) < 10
+    tsp = [];
+end
+
 % data retrieval
 mlfp = memmapfile(['tmp/' fldrInfolfp(trialNo).name], 'format', 'int16');
 lfpdata = reshape(mlfp.data, 30, []);

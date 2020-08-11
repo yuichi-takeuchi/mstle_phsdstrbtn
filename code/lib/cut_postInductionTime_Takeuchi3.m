@@ -1,4 +1,4 @@
-function [flag] = cut_postInductionTime_Takeuchi3_dual(RecInfo, DataStruct, closed)
+function [flag] = cut_postInductionTime_Takeuchi3(RecInfo, DataStruct)
 % Copyright (C) 2020 Yuichi Takeuchi
 
 %% Set params for main processes
@@ -12,9 +12,7 @@ cParams.TestDrtn = uint64(floor(120*cParams.sr)); % 120 s test period after stim
 
 %% Seizure detection: Band-pass filt-Rectification-movmean filtfilt signal pre-processing, RMS thresholding
 [ flag ] = eplpsyf_cutPostInductionTime2(DataStruct, cParams);
-if closed
-    [ flag ] = eplpsyf_cutPostInductionTimeACh1(DataStruct, cParams);
-else
-    [ flag ] = eplpsyf_cutPostInductionTimeACh2(DataStruct, cParams);
+[ flag ] = eplpsyf_cutPostInductionTimeACh1(DataStruct, cParams);
+
 end
-end
+
