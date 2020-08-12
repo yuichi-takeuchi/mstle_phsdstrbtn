@@ -10,10 +10,12 @@ for RatNo = 1:length(DataStruct) % for by rat no
     fldrInfoadc = dir(['tmp/' DataStruct(RatNo).datafilenamebase '_adc_' num2str(RatNo) '_trial*']);
     for TrialNo = 1:length(fldrInfolfp)
         [record, InstantaneousPhase] = resultantVectorRecord(fldrInfolfp, fldrInfoadc, TrialNo, channelNo, RecInfo, RatNo, closed, period, stm_delay, jitter);
-        if isempty(Stack)
-            Stack = record;
-        else
-            Stack = [Stack;record];
+        if ~isnan(record.r)
+            if isempty(Stack)
+                Stack = record;
+            else
+                Stack = [Stack;record];
+            end
         end
         
         % polar histogram output
