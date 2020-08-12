@@ -55,6 +55,6 @@ V = r*sin(mu);
 
 % output table
 varNames = {'LTR'; 'date'; 'expNo'; 'sessionNo'; 'ratNo'; 'trialNo'; 'closed'; 'offset'; 'duration'; 'delay'; 'jitter'; 'r'; 'theta'; 'X'; 'Y'; 'pval'; 'z'};
-record = table(RecInfo.LTR(ratNo), RecInfo.date, RecInfo.expnum1, RecInfo.expnum2, ratNo, trialNo, closed, period(1), period(2), stm_delay, jitter, r, mu, U, V, pval, z, 'VariableNames', varNames);
+record = table(RecInfo.LTR(ratNo), RecInfo.date, RecInfo.expnum1, RecInfo.expnum2, ratNo, trialNo, closed, period(1), period(2)-period(1), stm_delay, jitter, r, mu, U, V, pval, z, 'VariableNames', varNames);
 
 end
