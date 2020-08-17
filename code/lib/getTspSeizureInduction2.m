@@ -1,6 +1,6 @@
 function [RecInfo,DataStruct] = getTspSeizureInduction2(metainfo, ID, closed)
 % get timestamps of seizure induction, detections of rat 1, rat 2
-% Copyright (c) Yuichi Takeuchi
+% Copyright (c) 2020 Yuichi Takeuchi
 
 RecInfo = cell(1, size(metainfo,1));
 DataStruct = cell(1, size(metainfo,1));
