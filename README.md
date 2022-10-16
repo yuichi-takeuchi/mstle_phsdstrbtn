@@ -1,5 +1,5 @@
 # mstle_phsdstrbtn
- for data analysis with Python and MATLAB for Takeuchi 5 (32 ch tungsten wires + digital channel)
+ for data analysis with MATLAB for Takeuchi 3 (3 ch tungsten wires + digital channel)
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ The codes have been tested with MATLAB ver 9.5 (R2018b) with the following toolb
 
 ### How to use
 1. dat file should be located in the \data folder
-2. Launch \code\main.mlx
+2. Launch \code\main_*.mlx
 3. Results will be in the \results folder.
 
 ## Versioning
